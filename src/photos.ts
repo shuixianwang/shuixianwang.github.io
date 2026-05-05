@@ -95,7 +95,7 @@ export const photos: Photo[] = [
 ];
 
 export const heroPhotoIds = {
-  backdrop: "day-001-scoreboard",
+  backdrop: "spring-branches",
   floats: ["room-selfie", "sun-hats", "neon-closeup"],
   marquee: ["night-market", "sun-hats", "room-selfie"],
 } as const;

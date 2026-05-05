@@ -1,3 +1,4 @@
+import { getGeneratedAsset, type GeneratedAssetId } from "./generatedAssets";
 import { getPhoto, heroPhotoIds, photos, type Photo } from "./photos";
 
 function image(photo: Photo, alt = photo.alt): HTMLImageElement {
@@ -53,6 +54,31 @@ export function renderHeroMarquee(): void {
       thumb.append(image(getPhoto(item.value), ""));
       target.append(thumb);
     });
+  });
+}
+
+function generatedImage(id: GeneratedAssetId): HTMLImageElement {
+  const asset = getGeneratedAsset(id);
+  const img = document.createElement("img");
+  img.src = asset.src;
+  img.alt = "";
+  img.width = asset.width;
+  img.height = asset.height;
+  return img;
+}
+
+export function renderGeneratedAssets(): void {
+  const placements: { selector: string; asset: GeneratedAssetId }[] = [
+    { selector: "[data-hero-texture]", asset: "heroFilmGrain" },
+    { selector: "[data-moments-glow]", asset: "ledGlow" },
+    { selector: "[data-letter-paper]", asset: "letterPaper" },
+  ];
+
+  placements.forEach(({ selector, asset }) => {
+    const target = document.querySelector<HTMLElement>(selector);
+    if (!target) return;
+
+    target.replaceChildren(generatedImage(asset));
   });
 }
 
