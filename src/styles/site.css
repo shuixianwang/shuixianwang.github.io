@@ -23,6 +23,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background: var(--paper);
   color: var(--ink);
 }
@@ -220,7 +221,7 @@ button {
 .hero-lockup {
   position: absolute;
   left: 5vw;
-  bottom: 23vh;
+  bottom: 35.5vh;
   z-index: 4;
   max-width: 68rem;
 }
@@ -256,10 +257,10 @@ button {
 
 .hero-copy-panel {
   position: absolute;
-  right: 5vw;
-  top: 24vh;
+  left: max(1.5rem, 11vw);
+  right: max(1.5rem, 11vw);
+  bottom: clamp(4.5rem, 7vh, 6.5rem);
   z-index: 5;
-  width: min(34rem, calc(100% - 2rem));
   border: 1px solid rgba(255, 255, 255, 0.58);
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.9);
@@ -301,6 +302,159 @@ button {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.76rem;
   text-transform: uppercase;
+}
+
+.relationship-counter {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.82fr) minmax(18rem, 1fr) minmax(12rem, 0.68fr);
+  align-items: center;
+  column-gap: clamp(1.2rem, 3vw, 2.4rem);
+  row-gap: 0.9rem;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.74);
+  padding: clamp(1rem, 1.7vw, 1.45rem);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 24px 95px rgba(0, 0, 0, 0.28);
+}
+
+.relationship-counter .counter-rule {
+  grid-column: 1 / -1;
+  margin: 0;
+  background: rgba(21, 19, 15, 0.16);
+}
+
+.counter-context,
+.counter-breakdown {
+  min-width: 0;
+}
+
+.counter-label {
+  margin-bottom: 1rem;
+}
+
+.counter-copy {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.3vw, 2.25rem);
+  font-weight: 760;
+  line-height: 1.18;
+}
+
+.counter-copy::after {
+  content: "♡";
+  display: inline-block;
+  margin-left: 0.55rem;
+  color: var(--rose);
+  font-weight: 400;
+  transform: translateY(-0.08em);
+}
+
+.counter-since {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 1.55rem 0 0;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.counter-since::before {
+  content: "";
+  flex: 0 0 2.7rem;
+  height: 2px;
+  background: var(--rose);
+}
+
+.counter-main {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 0;
+  padding-right: clamp(0rem, 2vw, 1.4rem);
+  border-right: 1px solid rgba(21, 19, 15, 0.18);
+}
+
+.counter-day-number {
+  display: block;
+  color: rgba(21, 19, 15, 0.92);
+  font-size: clamp(5rem, 11vw, 8.4rem);
+  font-weight: 850;
+  line-height: 0.78;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.counter-day-label {
+  margin: 0 0 0.55rem 0.7rem;
+  color: var(--rose);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(1rem, 2vw, 1.45rem);
+  font-weight: 760;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.counter-breakdown {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+}
+
+.counter-chip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 2.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.36);
+  padding: 0.5rem 0.85rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+.counter-chip dt,
+.counter-chip dd {
+  margin: 0;
+}
+
+.counter-chip dt {
+  color: rgba(21, 19, 15, 0.62);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.counter-chip dd {
+  order: -1;
+  min-width: 2.3ch;
+  color: rgba(21, 19, 15, 0.86);
+  font-size: clamp(1.45rem, 3vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.relationship-counter.is-enhanced .counter-chip {
+  opacity: 0;
+  transform: translate3d(0, 0.4rem, 0);
+}
+
+.relationship-counter.is-ready .counter-chip {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 360ms ease,
+    transform 440ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.relationship-counter.is-ready .counter-chip:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.relationship-counter.is-ready .counter-chip:nth-child(3) {
+  transition-delay: 180ms;
 }
 
 .float-photo {
@@ -350,11 +504,16 @@ button {
   right: 0;
   bottom: 8vh;
   z-index: 3;
+  height: 6.4rem;
   overflow: hidden;
+  contain: layout paint;
   pointer-events: none;
 }
 
 .hero-marquee-track {
+  position: absolute;
+  left: 0;
+  top: 0;
   display: flex;
   align-items: center;
   width: max-content;
@@ -1277,7 +1436,7 @@ button {
   .hero-lockup {
     left: 1rem;
     right: 1rem;
-    bottom: 17rem;
+    bottom: 21rem;
   }
 
   .hero h1 {
@@ -1291,6 +1450,57 @@ button {
     bottom: 1.2rem;
     width: auto;
     padding: 1.1rem;
+  }
+
+  .relationship-counter {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.76);
+  }
+
+  .counter-label {
+    margin-bottom: 0.65rem;
+  }
+
+  .counter-copy {
+    font-size: 1.25rem;
+  }
+
+  .counter-since {
+    margin-top: 0.9rem;
+    font-size: 0.76rem;
+  }
+
+  .counter-main {
+    justify-content: flex-start;
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .counter-day-number {
+    font-size: clamp(4.5rem, 21vw, 6.8rem);
+  }
+
+  .counter-breakdown {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .counter-chip {
+    min-height: 3rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    padding: 0.55rem 0.65rem;
+  }
+
+  .counter-chip dd {
+    min-width: 0;
+    font-size: 1.45rem;
+  }
+
+  .counter-chip dt {
+    font-size: 0.66rem;
   }
 
   .panel-copy {
@@ -1320,6 +1530,7 @@ button {
 
   .hero-marquee {
     bottom: 10.2rem;
+    height: 3.9rem;
   }
 
   .hero-marquee span {
@@ -1485,6 +1696,13 @@ button {
     position: relative;
     top: auto;
   }
+
+  .relationship-counter.is-enhanced .counter-chip,
+  .relationship-counter.is-ready .counter-chip {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1514,11 +1732,12 @@ button {
   }
 
   .hero-lockup {
-    bottom: 15rem;
+    bottom: 20rem;
   }
 
   .hero-marquee {
     bottom: 9.5rem;
+    height: 3.2rem;
   }
 
   .hero-marquee span {
@@ -1539,8 +1758,31 @@ button {
     max-width: none;
   }
 
+  .relationship-counter {
+    bottom: 1rem;
+    padding: 0.95rem;
+  }
+
+  .counter-copy {
+    font-size: 1.15rem;
+  }
+
+  .counter-day-number {
+    font-size: clamp(4.2rem, 20vw, 5.4rem);
+  }
+
+  .counter-day-label {
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+  }
+
   .archive {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+  }
+
+  .photo-index {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
   }
 }

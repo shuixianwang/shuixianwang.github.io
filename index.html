@@ -19,9 +19,9 @@
       property="og:image"
       content="https://shuixianwang.github.io/assets/photos/06-day-001-scoreboard.jpg"
     >
-    <script type="module" crossorigin src="/assets/index-CaNMcLsW.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/render-C8nCJQYI.js">
-    <link rel="stylesheet" crossorigin href="/assets/render-BOV92qIX.css">
+    <script type="module" crossorigin src="/assets/index-DjyRF32q.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/render-BlC2TRjX.js">
+    <link rel="stylesheet" crossorigin href="/assets/render-CXJZEWgG.css">
   </head>
   <body>
     <a class="skip-link" href="#archive">跳到照片索引</a>
@@ -50,13 +50,38 @@
           </h1>
         </div>
 
-        <section class="hero-copy-panel" aria-label="生日页开场文案">
-          <div class="panel-rule"></div>
-          <p class="panel-label">To Shui Xian</p>
-          <p class="panel-copy">
-            等你来的那天，我们从第 001 天开始翻。把晴天、夜市、便利店和那些没来得及说完的话，都慢慢放进这里。
-          </p>
-          <a class="panel-link" href="#archive">看照片</a>
+        <section
+          class="hero-copy-panel relationship-counter"
+          aria-label="在一起天数计时器"
+          data-relationship-counter
+        >
+          <div class="panel-rule counter-rule"></div>
+          <div class="counter-context">
+            <p class="panel-label counter-label">To Shui Xian</p>
+            <p class="counter-copy">我们已经在一起</p>
+            <p class="counter-since">
+              Since <time datetime="2023-09-17">2023.09.17</time>
+            </p>
+          </div>
+          <div class="counter-main" aria-hidden="true">
+            <span class="counter-day-number" data-counter-days>986</span>
+            <span class="counter-day-label">Day</span>
+          </div>
+          <p class="visually-hidden" data-counter-summary>我们已经在一起 986 天</p>
+          <dl class="counter-breakdown" aria-label="年月日拆分">
+            <div class="counter-chip">
+              <dt>Years</dt>
+              <dd data-counter-years>2</dd>
+            </div>
+            <div class="counter-chip">
+              <dt>Months</dt>
+              <dd data-counter-months>8</dd>
+            </div>
+            <div class="counter-chip">
+              <dt>Days</dt>
+              <dd data-counter-remaining-days>13</dd>
+            </div>
+          </dl>
         </section>
 
         <div data-hero-floats></div>

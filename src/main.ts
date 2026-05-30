@@ -8,10 +8,12 @@ import {
   renderHeroFloats,
   renderHeroMarquee,
 } from "./render";
+import { initRelationshipCounter } from "./relationshipCounter";
 
 renderGeneratedAssets();
 renderHeroBackdrop();
 renderHeroFloats();
 renderHeroMarquee();
+initRelationshipCounter();
 renderGallery();
 initCursorGallery();
