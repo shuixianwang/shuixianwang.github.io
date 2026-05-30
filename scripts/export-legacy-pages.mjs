@@ -7,13 +7,17 @@ const dist = path.join(root, "dist");
 const rootAssets = path.join(root, "assets");
 const distAssets = path.join(dist, "assets");
 
-await copyFile(path.join(dist, "index.html"), path.join(root, "index.html"));
+const htmlFiles = (await readdir(dist)).filter((name) => name.endsWith(".html"));
+await Promise.all(
+  htmlFiles.map((name) => copyFile(path.join(dist, name), path.join(root, name)))
+);
+
 await mkdir(rootAssets, { recursive: true });
 
 const existingAssets = await readdir(rootAssets, { withFileTypes: true }).catch(() => []);
 await Promise.all(
   existingAssets
-    .filter((entry) => entry.isFile() && /^index-.*\.(css|js)$/.test(entry.name))
+    .filter((entry) => entry.isFile() && /\.(css|js)$/.test(entry.name))
     .map((entry) => rm(path.join(rootAssets, entry.name)))
 );
 

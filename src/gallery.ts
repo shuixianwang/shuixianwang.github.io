@@ -66,18 +66,8 @@ function paintTrail(stage: HTMLElement, cards: HTMLElement[]): void {
   });
 }
 
-function syncArchiveHeader(archive: HTMLElement | null): void {
-  if (!archive) return;
-
-  const rect = archive.getBoundingClientRect();
-  const midpoint = window.innerHeight / 2;
-  const isActive = rect.top <= midpoint && rect.bottom >= midpoint;
-  document.body.classList.toggle("is-archive-active", isActive);
-}
-
 export function initCursorGallery(): void {
   const stage = document.querySelector<HTMLElement>("[data-gallery-stage]");
-  const archive = document.querySelector<HTMLElement>(".archive");
   const cards = [...document.querySelectorAll<HTMLElement>(".index-card")];
   const counter = document.querySelector<HTMLOutputElement>("#archiveCounter");
   const thresholdValue = document.querySelector<HTMLOutputElement>("#thresholdValue");
@@ -143,12 +133,7 @@ export function initCursorGallery(): void {
     });
   });
 
-  const sync = () => syncArchiveHeader(archive);
-  sync();
-  window.addEventListener("scroll", sync, { passive: true });
   window.addEventListener("resize", () => {
     paintTrail(galleryStage, cards);
-    sync();
   });
-  window.addEventListener("hashchange", () => window.setTimeout(sync, 80));
 }
