@@ -200,6 +200,24 @@ export const photos: Photo[] = [
     caption: "完赛之后",
     orientation: "tall",
   },
+  {
+    id: "birthday-2026-burger",
+    src: "/assets/photos/22-birthday-2026-burger.jpg",
+    width: 768,
+    height: 1024,
+    alt: "李富悦和王水先在快餐店里拿着汉堡合照",
+    caption: "一起吃汉堡的日常",
+    orientation: "tall",
+  },
+  {
+    id: "birthday-2026-mirror-brush",
+    src: "/assets/photos/23-birthday-2026-mirror-brush.jpg",
+    width: 768,
+    height: 1024,
+    alt: "李富悦和王水先在浴室镜子前刷牙自拍",
+    caption: "一起刷牙的日常",
+    orientation: "tall",
+  },
 ];
 
 export const heroPhotoIds = {

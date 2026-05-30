@@ -15,6 +15,7 @@ export default defineConfig({
       input: {
         index: resolve(root, "src/index.html"),
         records: resolve(root, "src/records.html"),
+        birthday2026: resolve(root, "src/birthday-2026.html"),
       },
     },
   },

@@ -21,6 +21,12 @@ export type StoryChapter = {
 
 export type LetterStatus = "featured" | "reserved";
 
+export type BirthdayLetterPhoto = {
+  photoId: string;
+  caption: string;
+  placement: "opening" | "closing";
+};
+
 export type BirthdayLetter = {
   year: number;
   date: string;
@@ -29,6 +35,9 @@ export type BirthdayLetter = {
   excerpt: string;
   body: string[];
   coverPhotoId?: string;
+  detailHref?: string;
+  label?: string;
+  detailPhotos?: BirthdayLetterPhoto[];
 };
 
 export const recordsCover: RecordsCover = {
@@ -125,15 +134,31 @@ export const birthdayLetters: BirthdayLetter[] = [
   {
     year: 2026,
     date: "2026.05.26",
-    title: "水先，生日快乐。",
+    title: "21 岁，生日快乐。",
     status: "featured",
-    excerpt: "这一封先作为 2026 年的生日信占位。等正文写好后，它会成为这一页最完整的一篇信。",
+    excerpt: "第 4 个生日，已经走过很多个日子，也越来越确定你就是对的人。",
     body: [
-      "这是一段生日信占位正文。之后可以把真正想说的开场放在这里，让它像夹在手帐里的长信纸一样展开。",
-      "第二段可以写一段具体的回忆，或者写下这一年里最想认真保存的一个瞬间。",
-      "最后一段可以留给生日当天，也可以写给以后每一年回来翻到这里的你们。",
+      "已经是第4个生日了哦，三年那就是1095天，很多个日子了。",
+      "每一年都很不一样，每过的一年都比上一年进展了很多，可以说是最最能确定你是对的人的时刻，可以说是目前为止我们的路径最最明晰的日子，但要问我希望每一年都这样吗？我拿不准，我们一直在沉淀发展打怪升级，今年做到了恐怖的进展 我找了实习，我之前所有的积累都得到了兑现，你也即将要来一起实习，我们一起同居做好多好多事情，我预料有一天这样的增速会停滞，当然意料之中，我们有一天也会慢下来，我们的事业还是爱情都有可能会，但是慢不是停，我们可能真的老两口就在新西兰养羊呢，过那种你喜欢的慢慢的生活，那时候我们应该也默契到像AI一样精准猜出对方的下一个字吧。",
+      "但有你真再开心不过，我们一起见证了无数我们的成长，想起来 现在一起躺着 想每天同居 真的是非常期待的日子，没有了之前那么多羞涩，触手可及，实实在在的知道是什么感觉，在一起的幸福就是这样吧。",
+      "我陪你过了18 19 20 21岁，以后也要一起过好多岁，你也鼓励了我好多，你说现在我们已经比很多人幸福，幸福是比出来的，可是我确实停不下来，你支持我们一起润，我一直在努力，和理想，好远好近。可是就算一切没做成，我们也有很好的兜底，我们也能很幸福的生活，等待下一个机会，再继续我们的理想。",
+      "祝你生日快乐，天天开心，我也会每天都再对你更好一些，更爱你一些",
     ],
-    coverPhotoId: "restaurant-glasses",
+    coverPhotoId: "birthday-2026-burger",
+    detailHref: "/birthday-2026.html",
+    label: "LETTER 004",
+    detailPhotos: [
+      {
+        photoId: "birthday-2026-burger",
+        caption: "一起吃汉堡的日常",
+        placement: "opening",
+      },
+      {
+        photoId: "birthday-2026-mirror-brush",
+        caption: "一起刷牙的日常",
+        placement: "closing",
+      },
+    ],
   },
   {
     year: 2027,

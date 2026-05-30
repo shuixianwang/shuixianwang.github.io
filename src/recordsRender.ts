@@ -114,13 +114,17 @@ function createFeaturedLetter(letter: BirthdayLetter): HTMLElement {
   const title = text("h2", "featured-letter-title", letter.title);
   title.id = "letter-title";
   intro.append(
-    text("p", "eyebrow", `Letter / ${letter.date}`),
+    text("p", "eyebrow", `${letter.label ?? "Letter"} / ${letter.date}`),
     title,
     text("p", "featured-letter-excerpt", letter.excerpt)
   );
 
-  const paper = document.createElement("article");
-  paper.className = "letter-paper-card";
+  const paper = document.createElement(letter.detailHref ? "a" : "article");
+  paper.className = "letter-paper-card featured-letter-preview";
+  if (letter.detailHref && paper instanceof HTMLAnchorElement) {
+    paper.href = letter.detailHref;
+    paper.setAttribute("aria-label", `阅读全文：${letter.title}`);
+  }
   paper.append(text("span", "letter-year-stamp", String(letter.year)));
 
   if (letter.coverPhotoId) {
@@ -131,10 +135,14 @@ function createFeaturedLetter(letter: BirthdayLetter): HTMLElement {
     paper.append(figure);
   }
 
-  const body = document.createElement("div");
-  body.className = "letter-body";
-  appendParagraphs(body, letter.body);
-  paper.append(body);
+  const preview = document.createElement("div");
+  preview.className = "letter-preview-copy";
+  preview.append(
+    text("p", "letter-preview-label", "Preview"),
+    text("p", "letter-preview-text", "完整的生日信放在单独页面里，像一张夹进手帐的长信纸慢慢展开。"),
+    text("span", "letter-read-more", "阅读全文")
+  );
+  paper.append(preview);
 
   section.append(intro, paper);
   return section;
@@ -151,8 +159,13 @@ export function renderFeaturedLetter(): void {
 }
 
 function createArchiveCard(letter: BirthdayLetter): HTMLElement {
-  const article = document.createElement("article");
+  const article = document.createElement(letter.detailHref ? "a" : "article");
   article.className = `letter-archive-card is-${letter.status}`;
+  if (letter.detailHref && article instanceof HTMLAnchorElement) {
+    article.href = letter.detailHref;
+    article.classList.add("has-link");
+    article.setAttribute("aria-label", `阅读全文：${letter.title}`);
+  }
 
   const year = text("span", "archive-year", String(letter.year));
   const date = text("time", "archive-date", letter.date);
@@ -161,7 +174,7 @@ function createArchiveCard(letter: BirthdayLetter): HTMLElement {
   const status = text(
     "span",
     "archive-status",
-    letter.status === "featured" ? "已写入" : "待补上"
+    letter.detailHref ? "阅读全文" : letter.status === "featured" ? "已写入" : "待补上"
   );
 
   article.append(year, date, title, excerpt, status);
