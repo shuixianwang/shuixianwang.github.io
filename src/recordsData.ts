@@ -42,9 +42,8 @@ export type BirthdayLetter = {
 
 export const recordsCover: RecordsCover = {
   eyebrow: "Letters / Records",
-  title: "我们的信和记录",
-  intro:
-    "首页留给照片和那种一下子被看见的瞬间。这一页慢慢收东西：生日要说的话、照片背后的路、日期、地点，还有之后每一次值得补上的小记录。",
+  title: "我们的记录",
+  intro: "故事很长，以后也有好久",
   dateLabel: "Handbook / 2026.05.26",
   backgroundPhotoId: "beach-kiss",
 };
@@ -54,10 +53,10 @@ export const storyChapters: StoryChapter[] = [
     id: "story-01",
     label: "Story 01",
     date: "YYYY.MM.DD",
-    title: "把第一张照片贴在这里",
+    title: "故事的开始",
     body: [
-      "这一段先作为占位手记。之后可以写下这张照片出现的那天、走过的路、天气、心情，或者一句只有你们懂的话。",
-      "保留两段文字的结构，是为了之后写长一点时仍然有舒服的阅读节奏。",
+      "你的十八岁生日，马哥邀请我去了，就这样认识了",
+      "太好笑了，我们还喝了交杯酒",
     ],
     photoId: "beach-kiss",
     illustration: "pressed flower",
